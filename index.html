@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carousel</title>
+        <style>
+            .carousel img {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>My Carousel</h1>
+        <div class="carousel">
+            <img alt="First" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=1&w=350&h=200" />
+            <img alt="Second" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=2&w=350&h=200" />
+            <img alt="Third" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=3&w=350&h=200" />
+            <img alt="Fourth" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=4&w=350&h=200" />
+            <img alt="Fifth" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=5&w=350&h=200" />
+        </div>
+        <script>
+            // NOTE: Get children from carousel
+            const carouselList = document.querySelector('.carousel').children;
+
+            // NOTE: Recursion function to cycle each children.
+            const showSlide = (sliderIndex) => {
+                // NOTE: setTimeout function to simulate 1 second interval once.
+                setTimeout(() => {
+                    [...carouselList].forEach((item, idx) => {
+                        item.style.display = idx !== sliderIndex ? 'none' : 'block';
+                    });
+
+                    // NOTE: If sliderIndex same with carousel length; set it back to 0 before calling the recursion again.
+                    const nextIndex = sliderIndex + 1 === carouselList.length ? 0 : sliderIndex + 1;
+
+                    showSlide(nextIndex);
+                }, 1000);
+            };
+
+            showSlide(0);
+        </script>
+    </body>
+</html>
